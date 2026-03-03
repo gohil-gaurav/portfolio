@@ -20,25 +20,25 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
-    filename: 'data-dashboard.py',
-    title: 'Data Analysis Dashboard',
-    description: 'Interactive dashboard for visualizing and analyzing datasets with data cleaning, statistical analysis, and beautiful charts.',
-    techStack: ['Python', 'Pandas', 'Matplotlib', 'Seaborn'],
-    githubUrl: 'https://github.com/yourusername/data-dashboard',
-    liveUrl: undefined,
-    status: 'coming-soon',
+    filename: 'dayflow-hr.tsx',
+    title: 'DayFlow - HR Management System',
+    description: 'Modern HR system with employee management, attendance tracking, leave management, and payroll processing.',
+    techStack: ['Next.js', 'PostgreSQL', 'Prisma', 'NextAuth', 'Tailwind', 'Radix UI'],
+    githubUrl: 'https://github.com/gohil-gaurav/hr_management_odoo',
+    liveUrl: 'https://hr-management-odoo-rose.vercel.app/',
+    status: 'live',
     image: '/src/assets/images/project/hrmanagement.png'
   },
   {
     id: 2,
-    filename: 'student-system.py',
-    title: 'Student Management System',
-    description: 'Full-featured student management application with registration, course tracking, and grade management.',
-    techStack: ['Django', 'Python', 'SQLite', 'HTML/CSS'],
-    githubUrl: 'https://github.com/yourusername/student-system',
-    liveUrl: undefined,
-    status: 'building',
-    image: '/src/assets/images/project/blognest.png'
+    filename: 'rentalhub.tsx',
+    title: 'RentalHub - Property Management System',
+    description: 'Comprehensive rental management platform for landlords and tenants with property listings and booking features.',
+    techStack: ['React', 'Next.js', 'Tailwind', 'TypeScript'],
+    githubUrl: 'https://github.com/gohil-gaurav/RentalManagementSystem',
+    liveUrl: 'https://rental-management-system-nine.vercel.app/',
+    status: 'live',
+    image: '/src/assets/images/project/rentalhub.png'
   },
   {
     id: 3,
@@ -50,6 +50,17 @@ export const projects: Project[] = [
     liveUrl: 'https://student-performance-predictor01.streamlit.app/',
     status: 'live',
     image: '/src/assets/images/project/studentmarkpredition.png'
+  },
+  {
+    id: 4,
+    filename: 'blognest.py',
+    title: 'BlogNest - Multi-Role Blog System',
+    description: 'Full-featured blog platform with role-based access, authentication, categories, comments, and search functionality.',
+    techStack: ['Django', 'Python', 'SQLite', 'HTML/CSS', 'Bootstrap'],
+    githubUrl: 'https://github.com/gohil-gaurav/blognest',
+    liveUrl: 'https://gaurav89.pythonanywhere.com/',
+    status: 'live',
+    image: '/src/assets/images/project/blognest.png'
   }
 ];
 

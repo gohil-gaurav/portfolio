@@ -93,7 +93,7 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
             height: '100%',
             background: project.image ? `url(${project.image}) center/cover` : (PROJECT_IMAGES[id] || PROJECT_IMAGES[1]),
             transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-            filter: isHovered ? 'brightness(1.1)' : 'brightness(1)',
+            filter: isHovered ? 'brightness(1.3)' : 'brightness(1.15)',
             transition: 'transform 0.4s ease, filter 0.4s ease',
             transformOrigin: 'center'
           }}
@@ -104,8 +104,8 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
               position: 'absolute',
               inset: 0,
               background: isDark 
-                ? 'rgba(0,0,0,0.3)' 
-                : 'rgba(255,255,255,0.1)',
+                ? 'rgba(0,0,0,0.2)' 
+                : 'rgba(255,255,255,0.05)',
               transition: 'background 0.3s ease'
             }}
           />
@@ -285,6 +285,64 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
                           <stop offset="100%" stopColor="#BD34FE"/>
                         </linearGradient>
                       </defs>
+                    </svg>
+                  );
+                case 'Next.js':
+                  return (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="11" fill="#000000"/>
+                      <path d="M9 9h6v1.5H9zm0 3h6v1.5H9z" fill="#FFFFFF"/>
+                      <path d="M18.5 12c0 3.59-2.91 6.5-6.5 6.5S5.5 15.59 5.5 12 8.41 5.5 12 5.5s6.5 2.91 6.5 6.5z" stroke="#FFFFFF" strokeWidth="1.5" fill="none"/>
+                    </svg>
+                  );
+                case 'PostgreSQL':
+                  return (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                      <path d="M17.128 0c-.506.018-1.043.106-1.6.27-2.083.613-2.144 1.388-2.144 3.117v2.286h4.288v.571H11.53c-1.248 0-2.34.75-2.683 2.177-.394 1.635-.411 2.656 0 4.363.305 1.271 1.034 2.177 2.282 2.177h1.476v-1.962c0-1.418 1.227-2.668 2.683-2.668h4.286c1.194 0 2.144-.97 2.144-2.177V3.387c0-1.164-.982-2.038-2.144-2.286-.732-.156-1.494-.22-2.446-.101zm-2.43 1.32c.445 0 .806.367.806.82 0 .45-.361.815-.806.815-.444 0-.805-.365-.805-.815 0-.453.361-.82.805-.82z" fill="#336791"/>
+                      <path d="M18.696 7.429v1.905c0 1.476-1.252 2.725-2.683 2.725h-4.286c-1.175 0-2.144 1.002-2.144 2.177v4.071c0 1.164 1.012 1.849 2.144 2.177 1.355.393 2.654.464 4.286 0 1.083-.308 2.144-.928 2.144-2.177v-2.286h-4.286v-.571h6.43c1.248 0 1.713-.87 2.144-2.177.444-1.346.425-2.641 0-4.363-.306-1.243-.896-2.177-2.144-2.177h-1.605zm-2.377 10.5c.445 0 .806.365.806.815 0 .453-.361.82-.806.82-.444 0-.805-.367-.805-.82 0-.45.361-.815.805-.815z" fill="#336791"/>
+                    </svg>
+                  );
+                case 'Prisma':
+                  return (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                      <path d="M21.807 18.285L13.553.757a1.324 1.324 0 00-1.129-.754 1.31 1.31 0 00-1.206.626l-8.952 14.5a1.356 1.356 0 00.016 1.455l4.376 6.778a1.408 1.408 0 001.58.581l12.703-3.757c.389-.115.707-.39.873-.755s.164-.783-.007-1.146zm-1.848.752L9.18 22.224a.452.452 0 01-.575-.52l3.85-18.438c.072-.345.549-.4.699-.08l7.129 15.138a.515.515 0 01-.325.713z" fill="#2D3748"/>
+                      <path d="M21.807 18.285L13.553.757a1.324 1.324 0 00-1.129-.754 1.31 1.31 0 00-1.206.626l-8.952 14.5a1.356 1.356 0 00.016 1.455l4.376 6.778a1.408 1.408 0 001.58.581l12.703-3.757c.389-.115.707-.39.873-.755s.164-.783-.007-1.146zm-1.848.752L9.18 22.224a.452.452 0 01-.575-.52l3.85-18.438c.072-.345.549-.4.699-.08l7.129 15.138a.515.515 0 01-.325.713z" fill="url(#prisma-gradient)"/>
+                      <defs>
+                        <linearGradient id="prisma-gradient" x1="12" y1="0" x2="12" y2="24" gradientUnits="userSpaceOnUse">
+                          <stop offset="0%" stopColor="#5A67D8"/>
+                          <stop offset="100%" stopColor="#2D3748"/>
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  );
+                case 'NextAuth':
+                  return (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                      <rect x="3" y="3" width="18" height="18" rx="2" fill="#000000"/>
+                      <path d="M12 7v10M7 12h10" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round"/>
+                      <circle cx="12" cy="12" r="2" fill="#FFFFFF"/>
+                    </svg>
+                  );
+                case 'Radix UI':
+                  return (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="10" fill="#000000"/>
+                      <path d="M12 6v12M6 12h12" stroke="#FFFFFF" strokeWidth="2"/>
+                      <circle cx="12" cy="12" r="3" stroke="#FFFFFF" strokeWidth="2" fill="none"/>
+                    </svg>
+                  );
+                case 'Bootstrap':
+                  return (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                      <path d="M11.77 11.24H9.956V8.202h2.152c1.17 0 1.834.522 1.834 1.466 0 1.008-.773 1.572-2.172 1.572zm.324 1.206H9.957v3.348h2.231c1.459 0 2.232-.585 2.232-1.685s-.795-1.663-2.326-1.663zM24 11.39v1.218c-1.128.108-1.817.944-2.226 2.268-.407 1.319-.463 2.937-.42 4.186.045 1.3-.968 2.5-2.337 2.5H4.985c-1.37 0-2.383-1.2-2.337-2.5.043-1.249-.013-2.867-.42-4.186-.41-1.324-1.1-2.16-2.228-2.268V11.39c1.128-.108 1.819-.944 2.227-2.268.408-1.319.464-2.937.42-4.186-.045-1.3.968-2.5 2.338-2.5h14.032c1.37 0 2.382 1.2 2.337 2.5-.043 1.249.013 2.867.42 4.186.409 1.324 1.098 2.16 2.226 2.268zm-7.927 2.817c0-1.354-.953-2.333-2.368-2.488v-.057c1.04-.169 1.856-1.135 1.856-2.213 0-1.537-1.213-2.538-3.062-2.538h-4.16v10.172h4.181c2.218 0 3.553-1.086 3.553-2.876z" fill="#7952B3"/>
+                    </svg>
+                  );
+                case 'TypeScript':
+                  return (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                      <rect width="24" height="24" rx="2" fill="#3178C6"/>
+                      <path d="M12.5 15.5v3.5h1.75v-3.5h2.5v-1.5h-6.5v1.5h2.25zm4.5-5.5v-1.5h-6v1.5h2v6h2v-6h2z" fill="#FFFFFF"/>
+                      <path d="M13.5 7h-3v1.5h3V7zm-3 3h3v1.5h-3V10z" fill="#FFFFFF"/>
                     </svg>
                   );
                 default:
