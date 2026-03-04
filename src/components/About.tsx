@@ -6,7 +6,6 @@
 import { useContext, MouseEvent } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { ThemeContext } from '../App';
-import avatarImg from '../assets/images/avatar.jpeg';
 
 interface Skill {
   name: string;
@@ -81,7 +80,7 @@ const About = (): JSX.Element => {
               }}
             >
               <img 
-                src={avatarImg} 
+                src="/src/assets/images/avatar.jpeg"
                 alt="Gaurav" 
                 style={{
                   width: '100%',
@@ -112,11 +111,10 @@ const About = (): JSX.Element => {
               style={{
                 fontFamily: monoFont,
                 fontSize: '11px',
-                color: 'var(--color-text-muted)',
+                color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                marginBottom: '12px',
-                opacity: 0.6
+                marginBottom: '12px'
               }}
             >
               [ABOUT]
@@ -144,7 +142,7 @@ const About = (): JSX.Element => {
                 fontFamily: monoFont,
                 fontSize: '14px',
                 fontWeight: 400,
-                color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)',
+                color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
                 marginBottom: '32px'
               }}
             >
@@ -157,7 +155,7 @@ const About = (): JSX.Element => {
                 style={{
                   fontSize: '15px',
                   lineHeight: 1.8,
-                  color: 'var(--color-text-muted)',
+                  color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
                   marginBottom: '12px',
                   maxWidth: '480px'
                 }}
@@ -169,7 +167,7 @@ const About = (): JSX.Element => {
                 style={{
                   fontSize: '15px',
                   lineHeight: 1.8,
-                  color: 'var(--color-text-muted)',
+                  color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
                   marginBottom: '12px',
                   maxWidth: '480px'
                 }}
@@ -180,7 +178,7 @@ const About = (): JSX.Element => {
                 style={{
                   fontSize: '15px',
                   lineHeight: 1.8,
-                  color: 'var(--color-text-muted)',
+                  color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
                   maxWidth: '480px'
                 }}
               >
@@ -199,7 +197,7 @@ const About = (): JSX.Element => {
                   fontSize: '10px',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
-                  color: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)',
+                  color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
                   marginBottom: '16px'
                 }}
               >

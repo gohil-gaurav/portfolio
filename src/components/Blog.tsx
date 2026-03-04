@@ -64,11 +64,10 @@ const Blog = (): JSX.Element => {
             style={{ 
               fontFamily: monoFont,
               fontSize: '11px',
-              color: 'var(--color-text-muted)',
+              color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              marginBottom: '12px',
-              opacity: 0.6
+              marginBottom: '12px'
             }}
           >
             [BLOG]
@@ -95,12 +94,12 @@ const Blog = (): JSX.Element => {
           <p 
             style={{ 
               fontSize: '15px',
-              color: 'var(--color-text-muted)',
+              color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
               maxWidth: '420px',
               lineHeight: 1.6
             }}
           >
-            Thoughts, learnings, and things I'm working on writing about.
+            Articles about what I'm learning, building, and discovering in tech.
           </p>
         </motion.div>
 

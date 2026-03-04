@@ -45,13 +45,13 @@ const Projects = (): JSX.Element => {
             style={{ 
               fontFamily: monoFont,
               fontSize: '12px',
-              color: 'var(--color-text-muted)',
+              color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
               marginBottom: '12px'
             }}
           >
-            // PROJECTS
+            [PROJECTS]
           </p>
           <h2 
             className="text-2xl md:text-3xl"
@@ -68,13 +68,12 @@ const Projects = (): JSX.Element => {
           <p 
             style={{ 
               fontSize: '15px',
-              color: 'var(--color-text-muted)',
+              color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
               maxWidth: '480px',
               lineHeight: 1.6
             }}
           >
-            A selection of things I've built and experimented with. 
-            Real projects, real problems, real solutions.
+            Projects where I turn data into insights and ideas into real applications.
           </p>
         </motion.div>
 
