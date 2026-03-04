@@ -267,9 +267,9 @@ const Hero = (): JSX.Element => {
                 marginBottom: '32px'
               }}
             >
-              {/* Twitter */}
+              {/* Twitter/X */}
               <motion.a 
-                href="https://twitter.com/yourusername"
+                href="https://x.com/GauravGohi01"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -2 }}
@@ -285,7 +285,7 @@ const Hero = (): JSX.Element => {
 
               {/* LinkedIn */}
               <motion.a 
-                href="https://linkedin.com/in/yourusername"
+                href="https://www.linkedin.com/in/gaurav-gohil-344758346/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -2 }}
@@ -302,7 +302,7 @@ const Hero = (): JSX.Element => {
 
               {/* GitHub */}
               <motion.a 
-                href="https://github.com/yourusername"
+                href="https://github.com/gohil-gaurav"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -2 }}

@@ -8,6 +8,7 @@ import { useState, useEffect, createContext } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import SearchModal from './components/SearchModal';
 import Home from './pages/Home';
 import AllProjects from './pages/AllProjects';
 
@@ -27,6 +28,7 @@ export const ThemeContext = createContext<ThemeContextType>({
 
 function App(): JSX.Element {
   const location = useLocation();
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
 
   // Initialize theme from localStorage or system preference
   const [theme, setTheme] = useState<Theme>(() => {
@@ -46,6 +48,19 @@ function App(): JSX.Element {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  // Ctrl+K keyboard shortcut for search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   // Toggle function
   const toggleTheme = (): void => {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
@@ -55,7 +70,10 @@ function App(): JSX.Element {
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="app">
         {/* Navigation */}
-        <Navbar />
+        <Navbar onSearchClick={() => setIsSearchOpen(true)} />
+        
+        {/* Search Modal */}
+        <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
         
         {/* Main Content with Routes */}
         <main>

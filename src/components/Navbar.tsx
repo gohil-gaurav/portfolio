@@ -13,6 +13,10 @@ interface NavLink {
   label: string;
 }
 
+interface NavbarProps {
+  onSearchClick: () => void;
+}
+
 interface Colors {
   text: string;
   textHover: string;
@@ -24,7 +28,7 @@ interface Colors {
   statusOnline: string;
 }
 
-const Navbar = (): JSX.Element => {
+const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [activeSection, setActiveSection] = useState<string>('');
@@ -227,6 +231,7 @@ const Navbar = (): JSX.Element => {
               e.currentTarget.style.background = colors.subtleBg;
               e.currentTarget.style.borderColor = borderColor;
             }}
+            onClick={onSearchClick}
             aria-label="Search (Ctrl+K)"
             title="Search"
           >
