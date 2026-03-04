@@ -273,6 +273,8 @@ const Hero = (): JSX.Element => {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -2 }}
+                title="Follow me on X"
+                aria-label="X (Twitter)"
                 style={{
                   color: 'var(--color-text-muted)',
                   transition: 'color 0.2s ease'
@@ -289,6 +291,8 @@ const Hero = (): JSX.Element => {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -2 }}
+                title="Connect on LinkedIn"
+                aria-label="LinkedIn"
                 style={{
                   color: 'var(--color-text-muted)',
                   transition: 'color 0.2s ease'
@@ -306,6 +310,8 @@ const Hero = (): JSX.Element => {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -2 }}
+                title="Check out my GitHub"
+                aria-label="GitHub"
                 style={{
                   color: 'var(--color-text-muted)',
                   transition: 'color 0.2s ease'
@@ -320,6 +326,8 @@ const Hero = (): JSX.Element => {
               <motion.a 
                 href="mailto:your.email@example.com"
                 whileHover={{ y: -2 }}
+                title="Send me an email"
+                aria-label="Email"
                 style={{
                   color: 'var(--color-text-muted)',
                   transition: 'color 0.2s ease'

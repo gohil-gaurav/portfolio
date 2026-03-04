@@ -158,17 +158,6 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
               style={{ filter: 'grayscale(100%) contrast(1.05)' }}
             />
           </div>
-            {/* Elegant status dot */}
-            <span 
-              className="absolute -bottom-0.5 -right-0.5 rounded-full transition-all duration-300"
-              style={{
-                width: '6px',
-                height: '6px',
-                background: colors.statusOnline,
-                boxShadow: `0 0 0 2px ${isDark ? 'rgba(28,30,35,0.9)' : 'rgba(250,250,252,0.9)'}`,
-                opacity: 0.9
-              }}
-            />
           </a>
 
           {/* Navigation Links - Left aligned */}
