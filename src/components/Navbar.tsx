@@ -84,30 +84,30 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
   const navPadding: number = 20 - (scrollProgress * 8);
   const navHeight: number = 64 - (scrollProgress * 8);
   const bgOpacity: number = isDark 
-    ? 0.4 + (scrollProgress * 0.35)
-    : 0.5 + (scrollProgress * 0.35);
-  const blurAmount: number = 16 + (scrollProgress * 8);
+    ? 0.85 + (scrollProgress * 0.1)
+    : 0.9 + (scrollProgress * 0.05);
+  const blurAmount: number = 20 + (scrollProgress * 10);
 
-  // Glass background colors - softer charcoal instead of pure black
+  // Minimal glass background matching website aesthetic
   const glassBg: string = isDark
-    ? `rgba(28, 30, 35, ${bgOpacity})`
-    : `rgba(250, 250, 252, ${bgOpacity})`;
+    ? `rgba(17, 17, 17, ${bgOpacity})`
+    : `rgba(255, 255, 255, ${bgOpacity})`;
   
   const borderColor: string = isDark
-    ? `rgba(255, 255, 255, ${0.04 + scrollProgress * 0.02})`
-    : `rgba(0, 0, 0, ${0.04 + scrollProgress * 0.02})`;
+    ? `rgba(255, 255, 255, ${0.08 + scrollProgress * 0.04})`
+    : `rgba(0, 0, 0, ${0.08 + scrollProgress * 0.04})`;
 
-  // Refined color palette - text gets darker as you scroll
-  const textOpacity = 0.55 + (scrollProgress * 0.25); // Gets darker on scroll
+  // Neutral color palette matching website
+  const textOpacity = 0.7 + (scrollProgress * 0.2);
   const colors: Colors = {
-    text: isDark ? `rgba(255, 255, 255, ${textOpacity})` : `rgba(0, 0, 0, ${0.5 + scrollProgress * 0.25})`,
-    textHover: isDark ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)',
-    textActive: isDark ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 0.95)',
-    muted: isDark ? 'rgba(255, 255, 255, 0.35)' : 'rgba(0, 0, 0, 0.35)',
-    subtleBg: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.03)',
-    hoverBg: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
-    activeDot: isDark ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.8)',
-    statusOnline: '#22c55e'
+    text: isDark ? `rgba(255, 255, 255, ${textOpacity})` : `rgba(0, 0, 0, ${textOpacity})`,
+    textHover: isDark ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.95)',
+    textActive: isDark ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)',
+    muted: isDark ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+    subtleBg: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.04)',
+    hoverBg: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.06)',
+    activeDot: isDark ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.9)',
+    statusOnline: '#10b981'
   };
 
   return (
@@ -147,15 +147,17 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
             style={{
               width: `${28 - scrollProgress * 2}px`,
               height: `${28 - scrollProgress * 2}px`,
-              opacity: 0.85,
-              boxShadow: `0 0 0 1.5px ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`
+              opacity: 1,
+              boxShadow: isDark 
+                ? `0 0 0 2px rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.2)` 
+                : `0 0 0 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.08)`
             }}
           >
             <img 
               src={avatarImg} 
               alt="Gaurav" 
               className="w-full h-full object-cover object-top transition-all duration-300 group-hover:scale-110"
-              style={{ filter: 'grayscale(100%) contrast(1.05)' }}
+              style={{ filter: 'grayscale(0%) contrast(1.05) brightness(1.02)' }}
             />
           </div>
           </a>
@@ -169,19 +171,24 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
                 <a 
                   href={`#${link.id}`}
                   onClick={(e) => scrollToSection(e, link.id)}
-                  className="relative block px-2 py-2 text-[13px] tracking-wide transition-all duration-200"
+                  className="relative block px-3 py-2 text-[13px] tracking-wide transition-all duration-200 rounded-lg"
                   style={{ 
                     color: isActive ? colors.textActive : colors.text,
                     fontFamily: monoFont,
-                    fontWeight: isActive ? 500 : 400,
+                    fontWeight: isActive ? 600 : 500,
                     textTransform: 'lowercase',
-                    letterSpacing: '0.02em'
+                    letterSpacing: '0.02em',
+                    background: isActive ? colors.subtleBg : 'transparent'
                   }}
                   onMouseEnter={(e) => {
                     (e.target as HTMLAnchorElement).style.color = colors.textHover;
+                    if (!isActive) (e.target as HTMLAnchorElement).style.background = colors.subtleBg;
                   }}
                   onMouseLeave={(e) => {
-                    if (!isActive) (e.target as HTMLAnchorElement).style.color = colors.text;
+                    if (!isActive) {
+                      (e.target as HTMLAnchorElement).style.color = colors.text;
+                      (e.target as HTMLAnchorElement).style.background = 'transparent';
+                    }
                   }}
                 >
                   {link.label}
@@ -212,13 +219,17 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
               setSearchHovered(true);
               e.currentTarget.style.color = colors.textHover;
               e.currentTarget.style.background = colors.hoverBg;
-              e.currentTarget.style.borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
+              e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)';
+              e.currentTarget.style.boxShadow = isDark 
+                ? '0 4px 12px rgba(0, 0, 0, 0.2)' 
+                : '0 4px 12px rgba(0, 0, 0, 0.08)';
             }}
             onMouseLeave={(e) => {
               setSearchHovered(false);
               e.currentTarget.style.color = colors.muted;
               e.currentTarget.style.background = colors.subtleBg;
               e.currentTarget.style.borderColor = borderColor;
+              e.currentTarget.style.boxShadow = 'none';
             }}
             onClick={onSearchClick}
             aria-label="Search (Ctrl+K)"
@@ -239,9 +250,11 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
             <kbd 
               className="flex items-center gap-0.5 text-[11px] font-medium px-2 py-0.5 rounded transition-all duration-200"
               style={{ 
-                background: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)',
-                opacity: 0.7,
-                fontFamily: monoFont
+                background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)',
+                color: isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                opacity: 0.9,
+                fontFamily: monoFont,
+                border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`
               }}
             >
               <span style={{ fontSize: '10px' }}>Ctrl</span>
@@ -278,10 +291,12 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
             onMouseEnter={(e) => {
               e.currentTarget.style.color = colors.textHover;
               e.currentTarget.style.background = colors.subtleBg;
+              e.currentTarget.style.transform = 'scale(1.1)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.color = colors.muted;
               e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.transform = 'scale(1)';
             }}
             onClick={toggleTheme}
             aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}

@@ -159,20 +159,29 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps): JSX.Element | null 
 
       if (e.key === 'ArrowDown') {
         e.preventDefault();
-        setSelectedIndex(prev => (prev + 1) % results.length);
+        if (results.length > 0) {
+          setSelectedIndex(prev => (prev + 1) % results.length);
+        }
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
-        setSelectedIndex(prev => (prev - 1 + results.length) % results.length);
-      } else if (e.key === 'Enter' && results[selectedIndex]) {
+        if (results.length > 0) {
+          setSelectedIndex(prev => (prev - 1 + results.length) % results.length);
+        }
+      } else if (e.key === 'Enter') {
         e.preventDefault();
-        results[selectedIndex].action();
+        if (results.length > 0 && results[selectedIndex]) {
+          results[selectedIndex].action();
+        }
       } else if (e.key === 'Escape') {
+        e.preventDefault();
         onClose();
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    if (isOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }
   }, [isOpen, results, selectedIndex, onClose]);
 
   // Reset state when modal opens/closes
