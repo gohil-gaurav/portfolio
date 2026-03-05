@@ -3,7 +3,7 @@
  * Premium project cards section with minimal, developer-focused aesthetic
  */
 
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../App';
@@ -14,6 +14,24 @@ const Projects = (): JSX.Element => {
   const { theme } = useContext(ThemeContext);
   const isDark: boolean = theme === 'dark';
   const monoFont: string = "'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace";
+
+  // State to track if we're on mobile
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  // Detect screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Show 2 projects on mobile, 4 on desktop
+  const projectsToShow = isMobile ? 2 : 4;
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -86,7 +104,7 @@ const Projects = (): JSX.Element => {
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
         >
-          {projects.slice(0, 4).map((project, index) => (
+          {projects.slice(0, projectsToShow).map((project, index) => (
             <ProjectCard 
               key={project.id} 
               project={project} 
