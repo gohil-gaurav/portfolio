@@ -6,6 +6,7 @@
 import { useContext, MouseEvent } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { ThemeContext } from '../App';
+import avatarImg from '../assets/images/avatar.jpeg';
 
 interface Skill {
   name: string;
@@ -80,7 +81,7 @@ const About = (): JSX.Element => {
               }}
             >
               <img 
-                src="/src/assets/images/avatar.jpeg"
+                src={avatarImg}
                 alt="Gaurav" 
                 style={{
                   width: '100%',

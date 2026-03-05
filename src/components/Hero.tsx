@@ -6,6 +6,8 @@
 import { useContext } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { ThemeContext } from '../App';
+import avatarImg from '../assets/images/avatar.jpeg';
+import resumePdf from '../assets/images/project/Gaurav_Gohil_Resume.pdf';
 
 interface TerminalColors {
   close: string;
@@ -110,7 +112,7 @@ const Hero = (): JSX.Element => {
               style={{ marginBottom: '24px' }}
             >
               <img 
-                src="/src/assets/images/avatar.jpeg"
+                src={avatarImg}
                 alt="Gaurav Gohil"
                 style={{
                   width: '120px',
@@ -287,7 +289,7 @@ const Hero = (): JSX.Element => {
             >
               {/* Resume/CV Button */}
               <motion.a 
-                href="/src/assets/images/project/Gaurav_Gohil_Resume.pdf"
+                href={resumePdf}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -2 }}

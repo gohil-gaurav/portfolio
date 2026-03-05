@@ -3,6 +3,13 @@
  * Demo project entries for portfolio display
  */
 
+// Import project images
+import hrManagementImg from '../assets/images/project/hrmanagement.png';
+import rentalHubImg from '../assets/images/project/rentalhub.png';
+import studentPredictionImg from '../assets/images/project/studentmarkpredition.png';
+import blogNestImg from '../assets/images/project/blognest.png';
+import kushiImg from '../assets/images/project/kushi.png';
+
 export type ProjectStatus = 'coming-soon' | 'building' | 'live';
 
 export interface Project {
@@ -27,7 +34,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/gohil-gaurav/hr_management_odoo',
     liveUrl: 'https://hr-management-odoo-rose.vercel.app/',
     status: 'live',
-    image: '/src/assets/images/project/hrmanagement.png'
+    image: hrManagementImg
   },
   {
     id: 2,
@@ -38,7 +45,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/gohil-gaurav/RentalManagementSystem',
     liveUrl: 'https://rental-management-system-nine.vercel.app/',
     status: 'live',
-    image: '/src/assets/images/project/rentalhub.png'
+    image: rentalHubImg
   },
   {
     id: 3,
@@ -49,7 +56,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/gohil-gaurav/student-performance-predictor',
     liveUrl: 'https://student-performance-predictor01.streamlit.app/',
     status: 'live',
-    image: '/src/assets/images/project/studentmarkpredition.png'
+    image: studentPredictionImg
   },
   {
     id: 4,
@@ -60,7 +67,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/gohil-gaurav/blognest',
     liveUrl: 'https://gaurav89.pythonanywhere.com/',
     status: 'live',
-    image: '/src/assets/images/project/blognest.png'
+    image: blogNestImg
   },
   {
     id: 5,
@@ -71,7 +78,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/gohil-gaurav/webpage_kushi',
     liveUrl: 'https://iridescent-starship-c12fa1.netlify.app/',
     status: 'live',
-    image: '/src/assets/images/project/kushi.png'
+    image: kushiImg
   }
 ];
 
