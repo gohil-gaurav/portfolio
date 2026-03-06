@@ -104,6 +104,7 @@ const Hero = (): JSX.Element => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
+            className="mx-auto lg:mx-0"
             style={{ maxWidth: '520px' }}
           >
             {/* Profile Picture */}
@@ -465,9 +466,9 @@ const Hero = (): JSX.Element => {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Terminal */}
+          {/* Right Side - Terminal (Hidden on Mobile) */}
           <motion.div 
-            className="flex justify-center lg:justify-end"
+            className="hidden lg:flex justify-center lg:justify-end"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
