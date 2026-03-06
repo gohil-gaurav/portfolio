@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lanyard:monitor": "node update-lanyard-status.js",
+    "lanyard:test": "node test-lanyard.js"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",

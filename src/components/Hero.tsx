@@ -39,9 +39,21 @@ interface LanyardData {
   activities?: Array<{
     name: string;
     type: number;
+    timestamps?: {
+      start?: number;
+      end?: number;
+    };
   }>;
+  discord_user?: {
+    id: string;
+    username: string;
+  };
+  active_on_discord_web?: boolean;
+  active_on_discord_mobile?: boolean;
+  active_on_discord_desktop?: boolean;
+  listening_to_spotify?: boolean;
   kv?: {
-    last_seen?: string;
+    [key: string]: string;
   };
 }
 
@@ -77,11 +89,6 @@ const Hero = (): JSX.Element => {
   // Initialize client-side only
   useEffect(() => {
     setIsClient(true);
-    // Load stored timestamp immediately on client mount
-    const stored = localStorage.getItem('discord_last_seen');
-    if (stored) {
-      setLastSeenTime(parseInt(stored));
-    }
   }, []);
 
   // Fetch Discord status from Lanyard API
@@ -102,23 +109,28 @@ const Hero = (): JSX.Element => {
           }
         );
         const data: LanyardResponse = await response.json();
+        
         if (data.success && data.data.discord_status) {
           const status = data.data.discord_status;
           setDiscordStatus(status);
           
-          // ONLY update timestamp when user is online/idle/dnd
-          if (status !== 'offline') {
+          // When user is online/idle/dnd, store current timestamp
+          if (status === 'online' || status === 'idle' || status === 'dnd') {
             const currentTime = Date.now();
             setLastSeenTime(currentTime);
             localStorage.setItem('discord_last_seen', currentTime.toString());
-          } else {
-            // If offline, ONLY read from localStorage (never overwrite)
-            const stored = localStorage.getItem('discord_last_seen');
-            if (stored) {
-              const storedTime = parseInt(stored);
-              // Only update state if it's different to avoid unnecessary re-renders
-              if (storedTime !== lastSeenTime) {
-                setLastSeenTime(storedTime);
+          } else if (status === 'offline') {
+            // When offline, try to get timestamp from Lanyard KV first (global for all users)
+            if (data.data.kv && data.data.kv.last_seen) {
+              const kvTime = parseInt(data.data.kv.last_seen);
+              setLastSeenTime(kvTime);
+              // Also store in localStorage as backup
+              localStorage.setItem('discord_last_seen', kvTime.toString());
+            } else {
+              // Fallback to localStorage if KV not available
+              const stored = localStorage.getItem('discord_last_seen');
+              if (stored) {
+                setLastSeenTime(parseInt(stored));
               }
             }
           }
@@ -126,11 +138,6 @@ const Hero = (): JSX.Element => {
       } catch (error) {
         console.error('Failed to fetch Discord status:', error);
         setDiscordStatus('offline');
-        // On error, preserve the stored timestamp
-        const stored = localStorage.getItem('discord_last_seen');
-        if (stored) {
-          setLastSeenTime(parseInt(stored));
-        }
       }
     };
 
