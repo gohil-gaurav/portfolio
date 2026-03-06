@@ -32,7 +32,6 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [activeSection, setActiveSection] = useState<string>('');
-  const [searchHovered, setSearchHovered] = useState<boolean>(false);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const isDark: boolean = theme === 'dark';
 
@@ -79,6 +78,18 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
     handleScroll(); // Call once on mount
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close menu on scroll
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handleScroll = (): void => {
+      setIsMenuOpen(false);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMenuOpen]);
 
   const scrollToTop = (e: MouseEvent<HTMLAnchorElement>): void => {
     e.preventDefault();
@@ -228,7 +239,6 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
               fontFamily: monoFont
             }}
             onMouseEnter={(e) => {
-              setSearchHovered(true);
               e.currentTarget.style.color = colors.textHover;
               e.currentTarget.style.background = colors.hoverBg;
               e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)';
@@ -237,7 +247,6 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
                 : '0 4px 12px rgba(0, 0, 0, 0.08)';
             }}
             onMouseLeave={(e) => {
-              setSearchHovered(false);
               e.currentTarget.style.color = colors.muted;
               e.currentTarget.style.background = colors.subtleBg;
               e.currentTarget.style.borderColor = borderColor;
@@ -353,7 +362,7 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden flex items-center justify-center transition-all duration-200"
+            className="md:hidden mobile-menu-button flex items-center justify-center transition-all duration-200"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             style={{ 
               width: '28px',
@@ -400,7 +409,7 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
 
       {/* Mobile Menu Dropdown */}
       <div 
-        className="md:hidden pointer-events-auto absolute right-4 transition-all duration-300"
+        className="md:hidden mobile-menu-dropdown pointer-events-auto absolute right-4 transition-all duration-300"
         style={{
           width: '260px',
           top: `${navPadding + navHeight + 12}px`,
