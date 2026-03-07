@@ -9,6 +9,7 @@ import rentalHubImg from '../assets/images/project/rentalhub.png';
 import studentPredictionImg from '../assets/images/project/studentmarkpredition.png';
 import blogNestImg from '../assets/images/project/blognest.png';
 import kushiImg from '../assets/images/project/kushi.png';
+import bankManagementImg from '../assets/images/project/bankmanagment.png';
 
 export type ProjectStatus = 'coming-soon' | 'building' | 'live';
 
@@ -38,6 +39,17 @@ export const projects: Project[] = [
   },
   {
     id: 2,
+    filename: 'bank-system.py',
+    title: 'Bank Management System',
+    description: 'Comprehensive banking system with account management, transactions, loan processing, and customer portal.',
+    techStack: ['Django', 'Python', 'SQLite', 'HTML', 'CSS', 'Bootstrap'],
+    githubUrl: 'https://github.com/gohil-gaurav/BankManagementSystem',
+    liveUrl: 'https://bankmanagement.pythonanywhere.com/users/',
+    status: 'live',
+    image: bankManagementImg
+  },
+  {
+    id: 3,
     filename: 'rentalhub.tsx',
     title: 'RentalHub - Property Management System',
     description: 'Comprehensive rental management platform for landlords and tenants with property listings and booking features.',
@@ -48,7 +60,7 @@ export const projects: Project[] = [
     image: rentalHubImg
   },
   {
-    id: 3,
+    id: 4,
     filename: 'student-predictor.py',
     title: 'Student Performance Predictor',
     description: 'ML web app predicting exam scores based on study habits and lifestyle factors.',
@@ -59,7 +71,7 @@ export const projects: Project[] = [
     image: studentPredictionImg
   },
   {
-    id: 4,
+    id: 5,
     filename: 'blognest.py',
     title: 'BlogNest - Multi-Role Blog System',
     description: 'Full-featured blog platform with role-based access, authentication, categories, comments, and search functionality.',
@@ -70,7 +82,7 @@ export const projects: Project[] = [
     image: blogNestImg
   },
   {
-    id: 5,
+    id: 6,
     filename: 'kushi-fashion.html',
     title: 'Kushi - Fashion Blog Website',
     description: 'Elegant fashion blog showcasing latest trends, red carpet looks, and style insights with modern design.',

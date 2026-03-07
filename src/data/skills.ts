@@ -59,41 +59,48 @@ export const skills: Skill[] = [
   },
   {
     id: 7,
+    name: 'HTML',
+    category: 'Frontend',
+    description: 'Semantic markup, web structure, accessibility',
+    level: 'Proficient'
+  },
+  {
+    id: 8,
+    name: 'CSS',
+    category: 'Frontend',
+    description: 'Responsive design, animations, modern layouts',
+    level: 'Proficient'
+  },
+  {
+    id: 9,
     name: 'React',
     category: 'Frontend',
     description: 'UI components, SPAs, modern web apps',
     level: 'Learning'
   },
   {
-    id: 8,
+    id: 10,
     name: 'Git & GitHub',
     category: 'Tools',
     description: 'Version control, collaboration, CI/CD',
     level: 'Proficient'
   },
   {
-    id: 9,
+    id: 11,
     name: 'C',
     category: 'Language',
     description: 'Systems programming, DSA fundamentals',
     level: 'Intermediate'
   },
   {
-    id: 10,
-    name: 'HTML & CSS',
-    category: 'Frontend',
-    description: 'Semantic markup, responsive design',
-    level: 'Proficient'
-  },
-  {
-    id: 11,
+    id: 12,
     name: 'SQL',
     category: 'Database',
     description: 'Queries, data management, SQLite',
     level: 'Intermediate'
   },
   {
-    id: 12,
+    id: 13,
     name: 'VS Code',
     category: 'Tools',
     description: 'Development environment, extensions',
