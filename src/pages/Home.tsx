@@ -5,6 +5,7 @@
 
 import Hero from '../components/Hero';
 import TechStack from '../components/TechStack';
+import GitHubActivity from '../components/GitHubActivity';
 import Projects from '../components/Projects';
 import Blog from '../components/Blog';
 import About from '../components/About';
@@ -15,6 +16,7 @@ const Home = (): JSX.Element => {
     <>
       <Hero />
       <TechStack />
+      <GitHubActivity />
       <Projects />
       <Blog />
       <About />
