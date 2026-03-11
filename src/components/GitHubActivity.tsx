@@ -225,10 +225,10 @@ const GitHubActivity = (): JSX.Element => {
       id="github-activity"
       style={{ 
         background: 'var(--color-bg)',
-        padding: '80px 0'
+        padding: '60px 20px'
       }}
     >
-      <div className="container">
+      <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -240,15 +240,13 @@ const GitHubActivity = (): JSX.Element => {
             variants={itemVariants}
             style={{ 
               textAlign: 'left',
-              marginBottom: '48px',
-              maxWidth: '1200px',
-              margin: '0 auto 48px auto'
+              marginBottom: '32px'
             }}
           >
             <p 
               style={{ 
                 fontFamily: monoFont,
-                fontSize: '13px',
+                fontSize: 'clamp(11px, 2.5vw, 13px)',
                 color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
                 marginBottom: '12px',
                 letterSpacing: '0.1em',
@@ -260,7 +258,7 @@ const GitHubActivity = (): JSX.Element => {
             <h2 
               style={{ 
                 fontFamily: monoFont,
-                fontSize: '32px',
+                fontSize: 'clamp(24px, 5vw, 32px)',
                 fontWeight: 700,
                 color: 'var(--color-text)',
                 marginBottom: '12px'
@@ -271,7 +269,7 @@ const GitHubActivity = (): JSX.Element => {
             <p 
               style={{ 
                 fontFamily: monoFont,
-                fontSize: '15px',
+                fontSize: 'clamp(13px, 3vw, 15px)',
                 color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
                 maxWidth: '600px'
               }}
@@ -289,9 +287,9 @@ const GitHubActivity = (): JSX.Element => {
               background: '#161b22',
               border: '1px solid #30363d',
               borderRadius: '12px',
-              padding: '32px',
+              padding: 'clamp(16px, 4vw, 32px)',
               transition: 'all 0.3s ease',
-              width: 'fit-content',
+              width: '100%',
               maxWidth: '100%',
               overflow: 'hidden',
               margin: '0 auto'
@@ -301,26 +299,28 @@ const GitHubActivity = (): JSX.Element => {
             <div style={{
               display: 'flex',
               justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '24px',
-              flexWrap: 'wrap',
-              gap: '16px'
+              alignItems: 'flex-start',
+              marginBottom: '20px',
+              flexDirection: window.innerWidth < 640 ? 'column' : 'row',
+              gap: '12px'
             }}>
               <div style={{
                 fontFamily: monoFont,
-                fontSize: '14px',
+                fontSize: 'clamp(11px, 2.5vw, 14px)',
                 color: '#c9d1d9'
               }}>
                 <span style={{ fontWeight: 600, color: '#f0f6fc' }}>Total:</span>{' '}
                 {isLoading ? (
                   <span style={{ opacity: 0.5 }}>Loading...</span>
                 ) : (
-                  `${totalContributions} contributions in the last year`
+                  <span style={{ display: window.innerWidth < 640 ? 'block' : 'inline' }}>
+                    {totalContributions} contributions{window.innerWidth >= 640 ? ' in the last year' : ''}
+                  </span>
                 )}
               </div>
               <div style={{
                 fontFamily: monoFont,
-                fontSize: '14px',
+                fontSize: 'clamp(11px, 2.5vw, 14px)',
                 color: '#c9d1d9'
               }}>
                 <span style={{ fontWeight: 600, color: '#f0f6fc' }}>Last commit:</span>{' '}
@@ -334,22 +334,22 @@ const GitHubActivity = (): JSX.Element => {
 
             {/* Contribution Calendar Grid */}
             <div style={{ 
-              width: 'fit-content',
-              maxWidth: '100%',
+              width: '100%',
               background: '#0d1117',
               borderRadius: '8px',
-              padding: '20px',
-              overflow: 'hidden',
+              padding: 'clamp(12px, 3vw, 20px)',
+              overflow: 'auto',
               border: '1px solid #30363d'
             }}>
               {/* Month Labels */}
               <div style={{
                 display: 'flex',
                 marginBottom: '8px',
-                marginLeft: '32px',
+                marginLeft: 'clamp(24px, 5vw, 32px)',
                 position: 'relative',
                 height: '16px',
-                width: `${contributionData.length * 14 - 3}px`
+                width: `${contributionData.length * 14 - 3}px`,
+                minWidth: 'fit-content'
               }}>
                 {getMonthLabels().map((month, index) => (
                   <div
@@ -358,7 +358,7 @@ const GitHubActivity = (): JSX.Element => {
                       position: 'absolute',
                       left: `${month.weekIndex * 14}px`,
                       fontFamily: monoFont,
-                      fontSize: '11px',
+                      fontSize: 'clamp(9px, 2vw, 11px)',
                       color: '#8b949e'
                     }}
                   >
@@ -372,18 +372,18 @@ const GitHubActivity = (): JSX.Element => {
                 display: 'flex', 
                 gap: '3px', 
                 width: 'fit-content',
-                maxWidth: '100%'
+                minWidth: 'fit-content'
               }}>
                 {contributionData.length === 0 ? (
                   <div style={{
-                    padding: '40px',
+                    padding: 'clamp(20px, 5vw, 40px)',
                     textAlign: 'center',
                     color: '#8b949e',
                     fontFamily: monoFont,
-                    fontSize: '14px'
+                    fontSize: 'clamp(12px, 2.5vw, 14px)'
                   }}>
                     <p>Unable to load contribution data.</p>
-                    <p style={{ fontSize: '12px', marginTop: '8px', opacity: 0.7 }}>
+                    <p style={{ fontSize: 'clamp(10px, 2vw, 12px)', marginTop: '8px', opacity: 0.7 }}>
                       Check browser console for details.
                     </p>
                   </div>
@@ -394,12 +394,13 @@ const GitHubActivity = (): JSX.Element => {
                       display: 'flex',
                       flexDirection: 'column',
                       gap: '3px',
-                      marginRight: '8px'
+                      marginRight: 'clamp(4px, 1.5vw, 8px)',
+                      flexShrink: 0
                     }}>
                       <div style={{ height: '11px' }} />
                       <div style={{
                         fontFamily: monoFont,
-                        fontSize: '10px',
+                        fontSize: 'clamp(8px, 1.8vw, 10px)',
                         color: '#8b949e',
                         height: '11px',
                         lineHeight: '11px'
@@ -407,7 +408,7 @@ const GitHubActivity = (): JSX.Element => {
                       <div style={{ height: '11px' }} />
                       <div style={{
                         fontFamily: monoFont,
-                        fontSize: '10px',
+                        fontSize: 'clamp(8px, 1.8vw, 10px)',
                         color: '#8b949e',
                         height: '11px',
                         lineHeight: '11px'
@@ -415,7 +416,7 @@ const GitHubActivity = (): JSX.Element => {
                       <div style={{ height: '11px' }} />
                       <div style={{
                         fontFamily: monoFont,
-                        fontSize: '10px',
+                        fontSize: 'clamp(8px, 1.8vw, 10px)',
                         color: '#8b949e',
                         height: '11px',
                         lineHeight: '11px'
@@ -428,7 +429,8 @@ const GitHubActivity = (): JSX.Element => {
                       display: 'flex', 
                       gap: '3px', 
                       flexWrap: 'nowrap',
-                      width: 'fit-content'
+                      width: 'fit-content',
+                      minWidth: 'fit-content'
                     }}>
                       {contributionData.map((week, weekIndex) => (
                         <div key={weekIndex} style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
@@ -442,11 +444,14 @@ const GitHubActivity = (): JSX.Element => {
                                 backgroundColor: getContributionColor(day.contributionCount),
                                 borderRadius: '2px',
                                 cursor: 'pointer',
-                                transition: 'all 0.2s ease'
+                                transition: 'all 0.2s ease',
+                                flexShrink: 0
                               }}
                               onMouseEnter={(e) => {
-                                e.currentTarget.style.transform = 'scale(1.2)';
-                                e.currentTarget.style.outline = '1px solid #8b949e';
+                                if (window.innerWidth >= 768) {
+                                  e.currentTarget.style.transform = 'scale(1.2)';
+                                  e.currentTarget.style.outline = '1px solid #8b949e';
+                                }
                               }}
                               onMouseLeave={(e) => {
                                 e.currentTarget.style.transform = 'scale(1)';
@@ -465,12 +470,12 @@ const GitHubActivity = (): JSX.Element => {
             {/* Color Legend */}
             <div style={{
               display: 'flex',
-              justifyContent: 'flex-end',
+              justifyContent: window.innerWidth < 640 ? 'center' : 'flex-end',
               alignItems: 'center',
               marginTop: '16px',
-              gap: '8px',
+              gap: 'clamp(6px, 1.5vw, 8px)',
               fontFamily: monoFont,
-              fontSize: '12px',
+              fontSize: 'clamp(10px, 2vw, 12px)',
               color: '#8b949e'
             }}>
               <span>Less</span>
@@ -480,31 +485,36 @@ const GitHubActivity = (): JSX.Element => {
                   height: '11px', 
                   background: '#161b22', 
                   borderRadius: '2px',
-                  border: '1px solid #21262d'
+                  border: '1px solid #21262d',
+                  flexShrink: 0
                 }} />
                 <div style={{ 
                   width: '11px', 
                   height: '11px', 
                   background: '#0e4429', 
-                  borderRadius: '2px' 
+                  borderRadius: '2px',
+                  flexShrink: 0
                 }} />
                 <div style={{ 
                   width: '11px', 
                   height: '11px', 
                   background: '#006d32', 
-                  borderRadius: '2px' 
+                  borderRadius: '2px',
+                  flexShrink: 0
                 }} />
                 <div style={{ 
                   width: '11px', 
                   height: '11px', 
                   background: '#26a641', 
-                  borderRadius: '2px' 
+                  borderRadius: '2px',
+                  flexShrink: 0
                 }} />
                 <div style={{ 
                   width: '11px', 
                   height: '11px', 
                   background: '#39d353', 
-                  borderRadius: '2px' 
+                  borderRadius: '2px',
+                  flexShrink: 0
                 }} />
               </div>
               <span>More</span>
