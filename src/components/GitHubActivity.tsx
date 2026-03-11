@@ -289,7 +289,7 @@ const GitHubActivity = (): JSX.Element => {
               borderRadius: '12px',
               padding: 'clamp(16px, 4vw, 32px)',
               transition: 'all 0.3s ease',
-              width: '100%',
+              width: 'fit-content',
               maxWidth: '100%',
               overflow: 'hidden',
               margin: '0 auto'
@@ -302,7 +302,8 @@ const GitHubActivity = (): JSX.Element => {
               alignItems: 'flex-start',
               marginBottom: '20px',
               flexDirection: window.innerWidth < 640 ? 'column' : 'row',
-              gap: '12px'
+              gap: '12px',
+              minWidth: 'fit-content'
             }}>
               <div style={{
                 fontFamily: monoFont,
@@ -334,12 +335,14 @@ const GitHubActivity = (): JSX.Element => {
 
             {/* Contribution Calendar Grid */}
             <div style={{ 
-              width: '100%',
               background: '#0d1117',
               borderRadius: '8px',
               padding: 'clamp(12px, 3vw, 20px)',
               overflow: 'auto',
-              border: '1px solid #30363d'
+              border: '1px solid #30363d',
+              width: 'fit-content',
+              maxWidth: '100%',
+              margin: '0 auto'
             }}>
               {/* Month Labels */}
               <div style={{
@@ -348,8 +351,7 @@ const GitHubActivity = (): JSX.Element => {
                 marginLeft: 'clamp(24px, 5vw, 32px)',
                 position: 'relative',
                 height: '16px',
-                width: `${contributionData.length * 14 - 3}px`,
-                minWidth: 'fit-content'
+                width: 'fit-content'
               }}>
                 {getMonthLabels().map((month, index) => (
                   <div
@@ -359,7 +361,8 @@ const GitHubActivity = (): JSX.Element => {
                       left: `${month.weekIndex * 14}px`,
                       fontFamily: monoFont,
                       fontSize: 'clamp(9px, 2vw, 11px)',
-                      color: '#8b949e'
+                      color: '#8b949e',
+                      whiteSpace: 'nowrap'
                     }}
                   >
                     {month.label}
@@ -371,8 +374,7 @@ const GitHubActivity = (): JSX.Element => {
               <div style={{ 
                 display: 'flex', 
                 gap: '3px', 
-                width: 'fit-content',
-                minWidth: 'fit-content'
+                width: 'fit-content'
               }}>
                 {contributionData.length === 0 ? (
                   <div style={{
@@ -476,7 +478,8 @@ const GitHubActivity = (): JSX.Element => {
               gap: 'clamp(6px, 1.5vw, 8px)',
               fontFamily: monoFont,
               fontSize: 'clamp(10px, 2vw, 12px)',
-              color: '#8b949e'
+              color: '#8b949e',
+              minWidth: 'fit-content'
             }}>
               <span>Less</span>
               <div style={{ display: 'flex', gap: '3px' }}>
