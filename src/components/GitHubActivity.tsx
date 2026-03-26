@@ -332,8 +332,9 @@ const GitHubActivity = (): JSX.Element => {
               width: 'fit-content',
               maxWidth: '100%',
               margin: '0 auto',
-              border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
-              borderRadius: '8px'
+              background: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
+              border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}`,
+              borderRadius: '12px'
             }}>
               {/* Month Labels */}
               <div style={{
@@ -390,31 +391,31 @@ const GitHubActivity = (): JSX.Element => {
                       marginRight: 'clamp(4px, 1.5vw, 8px)',
                       flexShrink: 0
                     }}>
-                      <div style={{ height: '13px' }} />
+                      <div style={{ height: '14px' }} />
                       <div style={{
                         fontFamily: monoFont,
                         fontSize: 'clamp(9px, 1.8vw, 11px)',
                         color: isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)',
-                        height: '13px',
-                        lineHeight: '13px'
+                        height: '14px',
+                        lineHeight: '14px'
                       }}>Mon</div>
-                      <div style={{ height: '13px' }} />
+                      <div style={{ height: '14px' }} />
                       <div style={{
                         fontFamily: monoFont,
                         fontSize: 'clamp(9px, 1.8vw, 11px)',
                         color: isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)',
-                        height: '13px',
-                        lineHeight: '13px'
+                        height: '14px',
+                        lineHeight: '14px'
                       }}>Wed</div>
-                      <div style={{ height: '13px' }} />
+                      <div style={{ height: '14px' }} />
                       <div style={{
                         fontFamily: monoFont,
                         fontSize: 'clamp(9px, 1.8vw, 11px)',
                         color: isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)',
-                        height: '13px',
-                        lineHeight: '13px'
+                        height: '14px',
+                        lineHeight: '14px'
                       }}>Fri</div>
-                      <div style={{ height: '13px' }} />
+                      <div style={{ height: '14px' }} />
                     </div>
 
                     {/* Weeks Grid - Dynamic Width */}
@@ -432,8 +433,8 @@ const GitHubActivity = (): JSX.Element => {
                               key={dayIndex}
                               title={`${day.contributionCount} contributions on ${day.date}`}
                               style={{
-                                width: '13px',
-                                height: '13px',
+                                width: '12px',
+                                height: '14px',
                                 backgroundColor: getContributionColor(day.contributionCount),
                                 borderRadius: '2px',
                                 cursor: 'pointer',
@@ -475,37 +476,37 @@ const GitHubActivity = (): JSX.Element => {
               <span>Less</span>
               <div style={{ display: 'flex', gap: '3px' }}>
                 <div style={{ 
-                  width: '13px', 
-                  height: '13px', 
+                  width: '12px', 
+                  height: '14px', 
                   background: '#161b22', 
                   borderRadius: '2px',
                   border: '1px solid #21262d',
                   flexShrink: 0
                 }} />
                 <div style={{ 
-                  width: '13px', 
-                  height: '13px', 
+                  width: '12px', 
+                  height: '14px', 
                   background: '#0e4429', 
                   borderRadius: '2px',
                   flexShrink: 0
                 }} />
                 <div style={{ 
-                  width: '13px', 
-                  height: '13px', 
+                  width: '12px', 
+                  height: '14px', 
                   background: '#006d32', 
                   borderRadius: '2px',
                   flexShrink: 0
                 }} />
                 <div style={{ 
-                  width: '13px', 
-                  height: '13px', 
+                  width: '12px', 
+                  height: '14px', 
                   background: '#26a641', 
                   borderRadius: '2px',
                   flexShrink: 0
                 }} />
                 <div style={{ 
-                  width: '13px', 
-                  height: '13px', 
+                  width: '12px', 
+                  height: '14px', 
                   background: '#39d353', 
                   borderRadius: '2px',
                   flexShrink: 0
