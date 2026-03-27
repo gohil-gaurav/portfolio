@@ -17,14 +17,24 @@ const Projects = (): JSX.Element => {
 
   // State to track if we're on mobile and active filter
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [activeFilter, setActiveFilter] = useState<string>('All');
+  const [activeFilter, setActiveFilter] = useState<string>('All Work');
 
-  const filters = ['All', 'Django', 'ML', 'Web', 'Hackathon'];
+  const filters = ['All Work', 'Full Stack', 'AI / ML', 'Web Apps', 'Hackathons'];
 
   // Filter projects based on active filter
-  const filteredProjects = activeFilter === 'All' 
+  const filteredProjects = activeFilter === 'All Work' 
     ? projects 
-    : projects.filter(project => project.tags.includes(activeFilter));
+    : projects.filter(project => {
+        // Map new filter names to old tag names
+        const filterMap: { [key: string]: string } = {
+          'Full Stack': 'Django',
+          'AI / ML': 'ML',
+          'Web Apps': 'Web',
+          'Hackathons': 'Hackathon'
+        };
+        const tagToMatch = filterMap[activeFilter];
+        return tagToMatch ? project.tags.includes(tagToMatch) : false;
+      });
 
   // Detect screen size
   useEffect(() => {
@@ -206,8 +216,8 @@ const Projects = (): JSX.Element => {
           </motion.div>
         )}
 
-        {/* View All Link - Only show if there are more projects */}
-        {filteredProjects.length > projectsToShow && (
+        {/* View All Link - Always show with filter-specific text */}
+        {filteredProjects.length > 0 && (
           <motion.div 
             style={{ textAlign: 'center' }}
             initial={{ opacity: 0 }}
@@ -215,7 +225,7 @@ const Projects = (): JSX.Element => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Link to="/projects" style={{ textDecoration: 'none' }}>
+            <Link to={`/projects?filter=${encodeURIComponent(activeFilter)}`} style={{ textDecoration: 'none' }}>
               <motion.div
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
@@ -235,7 +245,10 @@ const Projects = (): JSX.Element => {
                   cursor: 'pointer'
                 }}
               >
-                View All Projects
+                {activeFilter === 'All Work' 
+                  ? 'View All Projects'
+                  : `View All ${activeFilter} Projects`
+                }
                 <span>→</span>
               </motion.div>
             </Link>
