@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Project, ProjectStatus } from '../data/projects';
 
 interface StatusConfig {
@@ -36,6 +37,7 @@ const PROJECT_IMAGES: Record<number, string> = {
 
 const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JSX.Element => {
   const { id, filename, title, description, techStack, githubUrl, liveUrl, status } = project;
+  const navigate = useNavigate();
 
   const statusConfig: StatusConfig = STATUS_CONFIG[status] || STATUS_CONFIG['coming-soon'];
   const [isHovered, setIsHovered] = React.useState<boolean>(false);
@@ -121,21 +123,42 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
           flexDirection: 'column'
         }}
       >
-        {/* Title */}
-        <h3 
-          style={{
-            fontFamily: monoFont,
-            fontSize: '18px',
-            fontWeight: 600,
-            color: 'var(--color-text)',
-            marginBottom: '12px',
-            lineHeight: 1.3
-          }}
-        >
-          {title}
-        </h3>
+        {/* Title with Status Badge */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+          <h3 
+            style={{
+              fontFamily: monoFont,
+              fontSize: '18px',
+              fontWeight: 600,
+              color: 'var(--color-text)',
+              lineHeight: 1.3,
+              flex: 1,
+              marginRight: '16px'
+            }}
+          >
+            {title}
+          </h3>
+          
+          {/* Status Badge - Positioned next to title */}
+          <div 
+            className="flex items-center justify-center bg-green-500/20 text-green-400 font-medium transition-all duration-200 hover:bg-green-500/30"
+            style={{
+              fontFamily: monoFont,
+              fontSize: '12px',
+              fontWeight: 500,
+              borderRadius: '0',
+              letterSpacing: '0.05em',
+              width: '60px',
+              height: '24px',
+              textAlign: 'center',
+              flexShrink: 0
+            }}
+          >
+            <span>{statusConfig.label}</span>
+          </div>
+        </div>
 
-        {/* Description - kept short */}
+        {/* Description */}
         <p 
           style={{
             fontSize: '14px',
@@ -441,7 +464,7 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
           })}
         </div>
 
-        {/* Footer: Status Badge & Action Buttons */}
+        {/* Action Buttons - View More on left, Code/Demo on right */}
         <div 
           style={{
             display: 'flex',
@@ -451,24 +474,37 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
             borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}`
           }}
         >
-          {/* Status Badge */}
-          <span 
+          {/* View More Button - Left side */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              console.log('Navigating to project:', id);
+              navigate(`/project/${id}`);
+            }}
             style={{
               fontFamily: monoFont,
-              fontSize: '10px',
-              fontWeight: 500,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              color: statusConfig.color,
-              background: statusConfig.bg,
-              padding: '5px 10px',
-              borderRadius: '0'
+              fontSize: '11px',
+              padding: '6px 12px',
+              background: 'transparent',
+              color: 'var(--color-text-secondary)',
+              border: `1px solid ${isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)'}`,
+              borderRadius: '4px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px',
+              transition: 'all 0.2s ease',
+              cursor: 'pointer'
             }}
+            title="View More Details"
           >
-            {statusConfig.label}
-          </span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+            View More
+          </motion.button>
 
-          {/* Action Buttons */}
+          {/* Action Buttons - Right side */}
           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             {/* View Code Button */}
             <motion.a 

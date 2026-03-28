@@ -21,8 +21,23 @@ const AllProjects = (): JSX.Element => {
 
   // Filter state - initialize with URL parameter
   const [activeFilter, setActiveFilter] = useState<string>(filterFromUrl);
+  
+  // Mobile detection state
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const filters = ['All Work', 'Full Stack', 'AI / ML', 'Web Apps', 'Hackathons'];
+
+  // Detect screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Update filter when URL changes
   useEffect(() => {
@@ -132,7 +147,8 @@ const AllProjects = (): JSX.Element => {
           style={{ 
             display: 'flex',
             justifyContent: 'center',
-            marginBottom: '48px'
+            marginBottom: '48px',
+            padding: '0 16px' // Add padding for mobile
           }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -140,6 +156,7 @@ const AllProjects = (): JSX.Element => {
         >
           <div style={{
             display: 'flex',
+            flexWrap: isMobile ? 'wrap' : 'nowrap', // Wrap on mobile
             gap: '2px',
             background: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)',
             borderRadius: '8px',
@@ -152,8 +169,8 @@ const AllProjects = (): JSX.Element => {
                 onClick={() => setActiveFilter(filter)}
                 style={{
                   fontFamily: monoFont,
-                  fontSize: '13px',
-                  padding: '14px 32px',
+                  fontSize: isMobile ? '11px' : '13px', // Smaller font on mobile
+                  padding: isMobile ? '10px 16px' : '14px 32px', // Smaller padding on mobile
                   background: activeFilter === filter 
                     ? (isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)')
                     : 'transparent',
@@ -167,8 +184,9 @@ const AllProjects = (): JSX.Element => {
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
                   fontWeight: activeFilter === filter ? 500 : 400,
-                  minWidth: '100px',
-                  whiteSpace: 'nowrap'
+                  minWidth: isMobile ? 'auto' : '100px', // Remove min-width on mobile
+                  whiteSpace: 'nowrap',
+                  flex: isMobile ? '1' : 'none' // Equal width on mobile
                 }}
                 onMouseEnter={(e) => {
                   if (activeFilter !== filter) {

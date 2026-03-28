@@ -54,7 +54,7 @@ export const projects: Project[] = [
   {
     id: 3,
     filename: 'rentalhub.tsx',
-    title: 'RentalHub - Property Management System',
+    title: 'RentalHub',
     description: 'Comprehensive rental management platform for landlords and tenants with property listings and booking features.',
     techStack: ['React', 'Next.js', 'Tailwind', 'TypeScript'],
     githubUrl: 'https://github.com/gohil-gaurav/RentalManagementSystem',
@@ -78,7 +78,7 @@ export const projects: Project[] = [
   {
     id: 5,
     filename: 'blognest.py',
-    title: 'BlogNest - Multi-Role Blog System',
+    title: 'BlogNest',
     description: 'Full-featured blog platform with role-based access, authentication, categories, comments, and search functionality.',
     techStack: ['Django', 'Python', 'SQLite', 'HTML/CSS', 'Bootstrap'],
     githubUrl: 'https://github.com/gohil-gaurav/blognest',

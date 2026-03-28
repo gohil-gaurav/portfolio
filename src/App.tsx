@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import SearchModal from './components/SearchModal';
 import Home from './pages/Home';
 import AllProjects from './pages/AllProjects';
+import ProjectDetail from './pages/ProjectDetail';
 
 // Theme types
 export type Theme = 'light' | 'dark';
@@ -80,6 +81,7 @@ function App(): JSX.Element {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<AllProjects />} />
+            <Route path="/project/:id" element={<ProjectDetail />} />
           </Routes>
         </main>
         
