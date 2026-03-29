@@ -12,6 +12,7 @@ import SearchModal from './components/SearchModal';
 import Home from './pages/Home';
 import AllProjects from './pages/AllProjects';
 import ProjectDetail from './pages/ProjectDetail';
+import ComingSoon from './components/ComingSoon';
 
 // Theme types
 export type Theme = 'light' | 'dark';
@@ -82,6 +83,12 @@ function App(): JSX.Element {
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<AllProjects />} />
             <Route path="/project/:id" element={<ProjectDetail />} />
+            <Route path="/coming-soon/:id" element={
+              <ComingSoon 
+                projectTitle="Movie Recommendation System" 
+                description="AI-powered movie recommendation engine using collaborative filtering and content-based algorithms. Currently implementing advanced ML models for better accuracy."
+              />
+            } />
           </Routes>
         </main>
         

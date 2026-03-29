@@ -10,6 +10,7 @@ import studentPredictionImg from '../assets/images/project/studentmarkpredition.
 import blogNestImg from '../assets/images/project/blognest.png';
 import kushiImg from '../assets/images/project/kushi.png';
 import bankManagementImg from '../assets/images/project/bankmanagment.png';
+import movieRecommendationImg from '../assets/images/project/MovieRecommendation.png';
 
 export type ProjectStatus = 'coming-soon' | 'building' | 'live';
 
@@ -41,6 +42,17 @@ export const projects: Project[] = [
   },
   {
     id: 2,
+    filename: 'movie-recommendation.py',
+    title: 'Movie Recommendation System',
+    description: 'AI-powered movie recommendation engine using collaborative filtering and content-based algorithms to suggest personalized movies.',
+    techStack: ['Python', 'FastAPI', 'React', 'Pandas', 'NumPy', 'Scikit-Learn', 'Jupyter Notebook'],
+    githubUrl: 'https://github.com/gohil-gaurav/Movie-Recommendation-System',
+    status: 'building',
+    image: movieRecommendationImg,
+    tags: ['ML']
+  },
+  {
+    id: 3,
     filename: 'bank-system.py',
     title: 'Bank Management System',
     description: 'Comprehensive banking system with account management, transactions, loan processing, and customer portal.',
@@ -52,7 +64,7 @@ export const projects: Project[] = [
     tags: ['Django']
   },
   {
-    id: 3,
+    id: 4,
     filename: 'rentalhub.tsx',
     title: 'RentalHub',
     description: 'Comprehensive rental management platform for landlords and tenants with property listings and booking features.',
@@ -64,7 +76,7 @@ export const projects: Project[] = [
     tags: ['Hackathon']
   },
   {
-    id: 4,
+    id: 5,
     filename: 'student-predictor.py',
     title: 'Student Performance Predictor',
     description: 'ML web app predicting exam scores based on study habits and lifestyle factors.',
@@ -76,7 +88,7 @@ export const projects: Project[] = [
     tags: ['ML']
   },
   {
-    id: 5,
+    id: 6,
     filename: 'blognest.py',
     title: 'BlogNest',
     description: 'Full-featured blog platform with role-based access, authentication, categories, comments, and search functionality.',
@@ -88,7 +100,7 @@ export const projects: Project[] = [
     tags: ['Django']
   },
   {
-    id: 6,
+    id: 7,
     filename: 'kushi-fashion.html',
     title: 'Kushi - Fashion Blog Website',
     description: 'Elegant fashion blog showcasing latest trends, red carpet looks, and style insights with modern design.',

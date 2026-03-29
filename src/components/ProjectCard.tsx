@@ -24,7 +24,7 @@ interface ProjectCardProps {
 // Status configuration with muted colors
 const STATUS_CONFIG: Record<ProjectStatus, StatusConfig> = {
   'coming-soon': { label: 'Coming Soon', color: '#f97316', bg: 'rgba(249, 115, 22, 0.1)' },
-  'building': { label: 'Building', color: '#ef4444', bg: 'rgba(239, 68, 68, 0.1)' },
+  'building': { label: 'Building', color: '#f97316', bg: 'rgba(249, 115, 22, 0.1)' },
   'live': { label: 'Live', color: '#4ade80', bg: 'rgba(74, 222, 128, 0.1)' }
 };
 
@@ -84,7 +84,7 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
       {/* Project Image / Preview Area */}
       <div 
         style={{
-          height: '280px',
+          height: '320px',
           position: 'relative',
           overflow: 'hidden'
         }}
@@ -141,17 +141,20 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
           
           {/* Status Badge - Positioned next to title */}
           <div 
-            className="flex items-center justify-center bg-green-500/20 text-green-400 font-medium transition-all duration-200 hover:bg-green-500/30"
+            className="flex items-center justify-center font-medium transition-all duration-200"
             style={{
               fontFamily: monoFont,
               fontSize: '12px',
               fontWeight: 500,
               borderRadius: '0',
               letterSpacing: '0.05em',
-              width: '60px',
-              height: '24px',
+              width: '80px',
+              height: '28px',
               textAlign: 'center',
-              flexShrink: 0
+              flexShrink: 0,
+              background: statusConfig.bg,
+              color: statusConfig.color,
+              padding: '4px 8px'
             }}
           >
             <span>{statusConfig.label}</span>
@@ -387,6 +390,23 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
                       <path d="M13.5 7h-3v1.5h3V7zm-3 3h3v1.5h-3V10z" fill="#FFFFFF"/>
                     </svg>
                   );
+                case 'FastAPI':
+                  return (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="11" fill="#009688"/>
+                      <path d="M12 2L8 8h8l-4-6zM8 16l4 6 4-6H8z" fill="#FFFFFF"/>
+                      <circle cx="12" cy="12" r="3" fill="#FFFFFF"/>
+                    </svg>
+                  );
+                case 'Jupyter Notebook':
+                  return (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="11" fill="#F37626"/>
+                      <circle cx="7" cy="7" r="2" fill="#FFFFFF"/>
+                      <circle cx="17" cy="7" r="2" fill="#FFFFFF"/>
+                      <circle cx="12" cy="17" r="2" fill="#FFFFFF"/>
+                    </svg>
+                  );
                 default:
                   return (
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
@@ -536,8 +556,8 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
               Code
             </motion.a>
 
-            {/* Live Demo Button (only if liveUrl exists) */}
-            {liveUrl && (
+            {/* Live Demo Button or Coming Soon Button */}
+            {liveUrl ? (
               <motion.a 
                 href={liveUrl}
                 target="_blank"
@@ -568,7 +588,36 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
                 </svg>
                 Demo
               </motion.a>
-            )}
+            ) : status === 'building' ? (
+              <motion.button
+                onClick={() => {
+                  navigate(`/coming-soon/${id}`);
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                style={{
+                  fontFamily: monoFont,
+                  fontSize: '11px',
+                  padding: '6px 12px',
+                  background: 'rgba(239, 68, 68, 0.1)',
+                  color: '#ef4444',
+                  border: '1px solid rgba(239, 68, 68, 0.2)',
+                  borderRadius: '4px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  transition: 'all 0.2s ease',
+                  cursor: 'pointer'
+                }}
+                title="View Development Status"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+                Preview
+              </motion.button>
+            ) : null}
           </div>
         </div>
       </div>
