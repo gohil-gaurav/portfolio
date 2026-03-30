@@ -9,6 +9,13 @@ import { motion } from 'framer-motion';
 import { ThemeContext } from '../App';
 import { projects, Project } from '../data/projects';
 
+// Interface for highlight items
+interface HighlightItem {
+  title: string;
+  description: string;
+  icon: React.ReactElement;
+}
+
 // Custom hook for responsive design
 const useResponsive = () => {
   const [windowWidth, setWindowWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 1024);
@@ -35,6 +42,84 @@ const ProjectDetail = (): JSX.Element => {
   const monoFont: string = "'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace";
 
   const [project, setProject] = useState<Project | null>(null);
+
+  // Enhanced content for Movie Recommendation System
+  const getProjectContent = (projectId: number) => {
+    if (projectId === 2) { // Movie Recommendation System
+      return {
+        aboutProject: "CineVault is an AI-powered movie recommendation platform that suggests similar movies using a content-based model (TF-IDF + cosine similarity). Integrated with TMDB API for real-time movie data.",
+        projectOverview: "An end-to-end ML + full-stack project where a FastAPI backend serves recommendations and a React frontend delivers a responsive, Netflix-style movie discovery experience.",
+        keyHighlights: [
+          {
+            title: "AI Recommendation Engine",
+            description: "Content-based filtering using TF-IDF and cosine similarity",
+            icon: (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.07 2.07 0 0 1-2.44-2.44 2.07 2.07 0 0 1-2.44-2.44 2.07 2.07 0 0 1-2.44-2.44A2.5 2.5 0 0 1 2.5 9.5h15A2.5 2.5 0 0 1 9.5 2Z"/>
+              </svg>
+            )
+          },
+          {
+            title: "TMDB API Integration",
+            description: "Real-time movie data with posters, ratings, and genres",
+            icon: (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect width="18" height="18" x="3" y="3" rx="2"/>
+                <path d="m16 10-4-4-4 4"/>
+                <path d="M12 6v8"/>
+              </svg>
+            )
+          },
+          {
+            title: "Full-Stack Architecture",
+            description: "FastAPI backend with React frontend for seamless UX",
+            icon: (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            )
+          },
+          {
+            title: "Smart Watchlist",
+            description: "Persistent user preferences with localStorage",
+            icon: (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>
+              </svg>
+            )
+          },
+          {
+            title: "Cloud Deployment",
+            description: "Production-ready hosting on Vercel and Render",
+            icon: (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+              </svg>
+            )
+          },
+          {
+            title: "Netflix-Style UI",
+            description: "Modern, responsive interface with smooth animations",
+            icon: (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect width="20" height="15" x="2" y="3" rx="2" ry="2"/>
+                <path d="m10 21 4-10 4 10"/>
+                <path d="M6 21h12"/>
+              </svg>
+            )
+          }
+        ]
+      };
+    }
+    return {
+      aboutProject: project?.description || "",
+      projectOverview: "This project demonstrates modern web development practices with a focus on user experience, performance, and maintainable code architecture.",
+      keyHighlights: []
+    };
+  };
+
+  const projectContent = getProjectContent(project?.id || 0);
 
   useEffect(() => {
     console.log('ProjectDetail received ID:', id);
@@ -266,7 +351,7 @@ const ProjectDetail = (): JSX.Element => {
           className="grid grid-cols-1 lg:grid-cols-2" 
           style={{ 
             gap: isDesktop ? '60px' : '32px', 
-            marginBottom: isMobile ? '60px' : '80px' 
+            marginBottom: isMobile ? '40px' : '60px' 
           }}
         >
           {/* About Project - Left Column */}
@@ -287,16 +372,64 @@ const ProjectDetail = (): JSX.Element => {
             >
               About Project
             </h2>
-            <p 
-              style={{ 
-                fontSize: isMobile ? '14px' : '16px',
-                lineHeight: 1.7,
-                color: 'var(--color-text-secondary)',
-                marginBottom: '24px'
-              }}
-            >
-              {project.description}
-            </p>
+            
+            {/* Enhanced content for Movie Recommendation System */}
+            {project?.id === 2 ? (
+              <div>
+                {/* About Project - Always visible */}
+                <div style={{ marginBottom: '32px' }}>
+                  <p 
+                    style={{ 
+                      fontSize: isMobile ? '14px' : '16px',
+                      lineHeight: 1.7,
+                      color: 'var(--color-text-secondary)',
+                      margin: 0
+                    }}
+                  >
+                    {projectContent.aboutProject}
+                  </p>
+                </div>
+
+                {/* Project Overview - Always visible */}
+                <div style={{ marginBottom: '32px' }}>
+                  <h3 
+                    style={{ 
+                      fontFamily: monoFont,
+                      fontSize: isMobile ? '16px' : '18px',
+                      fontWeight: 600,
+                      color: 'var(--color-text)',
+                      marginBottom: '16px',
+                      letterSpacing: '-0.01em'
+                    }}
+                  >
+                    Project Overview
+                  </h3>
+                  <p 
+                    style={{ 
+                      fontSize: isMobile ? '14px' : '16px',
+                      lineHeight: 1.7,
+                      color: 'var(--color-text-secondary)',
+                      margin: 0
+                    }}
+                  >
+                    {projectContent.projectOverview}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <p 
+                  style={{ 
+                    fontSize: isMobile ? '14px' : '16px',
+                    lineHeight: 1.7,
+                    color: 'var(--color-text-secondary)',
+                    marginBottom: '24px'
+                  }}
+                >
+                  {project?.description}
+                </p>
+              </div>
+            )}
           </motion.div>
 
           {/* Technologies - Right Column */}
@@ -615,38 +748,140 @@ const ProjectDetail = (): JSX.Element => {
           </motion.div>
         </div>
 
-        {/* Project Overview Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          style={{ marginBottom: isMobile ? '60px' : '80px' }}
-        >
-          <h2 
+        {/* Key Features - Separate Full-Width Section */}
+        {project?.id === 2 && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             style={{ 
-              fontFamily: monoFont,
-              fontSize: isMobile ? '18px' : '20px',
-              fontWeight: 600,
-              color: 'var(--color-text)',
-              marginBottom: '16px',
-              letterSpacing: '-0.01em'
+              marginBottom: isMobile ? '60px' : '80px',
+              paddingTop: isMobile ? '0px' : '20px'
             }}
           >
-            Project Overview
-          </h2>
-          <p 
-            style={{ 
-              fontSize: isMobile ? '14px' : '16px',
-              lineHeight: 1.7,
-              color: 'var(--color-text-secondary)',
-              maxWidth: '800px'
-            }}
-          >
-            This project demonstrates modern web development practices with a focus on user experience, 
-            performance, and maintainable code architecture. Built with industry-standard tools and 
-            following best practices for scalability and security.
-          </p>
-        </motion.div>
+            <div className="container" style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 16px' }}>
+              <h2 
+                style={{ 
+                  fontFamily: monoFont,
+                  fontSize: isMobile ? '20px' : '24px',
+                  fontWeight: 700,
+                  color: 'var(--color-text)',
+                  marginBottom: '40px',
+                  letterSpacing: '-0.02em',
+                  textAlign: 'left'
+                }}
+              >
+                Key Features
+              </h2>
+              
+              {/* Features Grid - Clean Minimal Cards */}
+              <div 
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+                  gap: '20px'
+                }}
+              >
+                {projectContent.keyHighlights.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: index * 0.1,
+                      ease: [0.25, 0.46, 0.45, 0.94]
+                    }}
+                    whileHover={{ 
+                      scale: 1.02,
+                      transition: { duration: 0.2, ease: 'easeOut' }
+                    }}
+                    style={{
+                      background: isDark ? 'rgba(20, 20, 20, 0.6)' : 'rgba(250, 250, 250, 0.8)',
+                      border: `1px solid ${isDark ? '#1f1f1f' : 'rgba(0,0,0,0.08)'}`,
+                      borderRadius: '12px',
+                      padding: '20px',
+                      cursor: 'default',
+                      transition: 'all 0.3s ease',
+                      backdropFilter: 'blur(10px)',
+                      boxShadow: isDark 
+                        ? '0 4px 20px rgba(0, 0, 0, 0.2)' 
+                        : '0 4px 20px rgba(0, 0, 0, 0.05)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '16px',
+                      minHeight: '80px'
+                    }}
+                    onMouseEnter={(e) => {
+                      const element = e.currentTarget;
+                      element.style.background = isDark ? 'rgba(25, 25, 25, 0.8)' : 'rgba(255, 255, 255, 0.9)';
+                      element.style.borderColor = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)';
+                      element.style.boxShadow = isDark 
+                        ? '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255,255,255,0.08)' 
+                        : '0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0,0,0,0.05)';
+                    }}
+                    onMouseLeave={(e) => {
+                      const element = e.currentTarget;
+                      element.style.background = isDark ? 'rgba(20, 20, 20, 0.6)' : 'rgba(250, 250, 250, 0.8)';
+                      element.style.borderColor = isDark ? '#1f1f1f' : 'rgba(0,0,0,0.08)';
+                      element.style.boxShadow = isDark 
+                        ? '0 4px 20px rgba(0, 0, 0, 0.2)' 
+                        : '0 4px 20px rgba(0, 0, 0, 0.05)';
+                    }}
+                  >
+                    {/* Icon - Left Side */}
+                    <div 
+                      style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '10px',
+                        background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)'}`,
+                        flexShrink: 0
+                      }}
+                    >
+                      <div style={{ color: 'var(--color-text-secondary)' }}>
+                        {feature.icon}
+                      </div>
+                    </div>
+                    
+                    {/* Content - Right Side */}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <h4
+                        style={{
+                          fontFamily: monoFont,
+                          fontSize: isMobile ? '15px' : '16px',
+                          fontWeight: 600,
+                          color: 'var(--color-text)',
+                          marginBottom: '6px',
+                          lineHeight: 1.3,
+                          letterSpacing: '-0.01em'
+                        }}
+                      >
+                        {feature.title}
+                      </h4>
+                      <p
+                        style={{
+                          fontSize: isMobile ? '13px' : '14px',
+                          lineHeight: 1.4,
+                          color: 'var(--color-text-secondary)',
+                          margin: 0,
+                          fontWeight: 400,
+                          opacity: 0.8
+                        }}
+                      >
+                        {feature.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
       </div>
     </div>
   );
