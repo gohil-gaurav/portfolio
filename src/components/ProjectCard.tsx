@@ -248,6 +248,10 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
                 src={getTechIconUrl(tech)}
                 alt={tech}
                 className="w-7 h-7"
+                style={{
+                  filter: isDark ? 'brightness(1.28) saturate(1.12) contrast(1.08)' : 'none',
+                  transition: 'filter 0.2s ease'
+                }}
                 loading="lazy"
                 decoding="async"
                 onError={(event) => {
