@@ -45,11 +45,12 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
   // Monospace font for terminal aesthetic
   const monoFont: string = "'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace";
 
-  // Smooth scroll tracking for navbar transformation
+  // Smooth scroll tracking for navbar transformation - EXTREMELY SLOW animation
   useEffect(() => {
     const handleScroll = (): void => {
       const scrollY: number = window.scrollY;
-      const progress: number = Math.min(scrollY / 150, 1);
+      // Increase from 800 to 1500 for extremely slow animation (takes much more scroll to complete)
+      const progress: number = Math.min(scrollY / 1500, 1);
       setScrollProgress(progress);
 
       // Detect active section - check from top to bottom
@@ -102,10 +103,10 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
     setIsMenuOpen(false);
   };
 
-  // Dynamic values based on scroll progress
-  const navWidth: number = 94 - (scrollProgress * 22);
-  const navPadding: number = 20 - (scrollProgress * 8);
-  const navHeight: number = 64 - (scrollProgress * 8);
+  // Dynamic values based on scroll progress - Full width initially, then smaller (EXTREMELY SLOW)
+  const navWidth: number = 100 - (scrollProgress * 15); // Reduced from 20 to 15 for extremely gentle transition
+  const navPadding: number = 16 + (scrollProgress * 12); // Start with 16px, increase to 28px for more spacing
+  const navHeight: number = 64 - (scrollProgress * 3); // Reduced from 4 to 3 for barely noticeable height change
   const bgOpacity: number = isDark 
     ? 0.85 + (scrollProgress * 0.1)
     : 0.9 + (scrollProgress * 0.05);
@@ -136,20 +137,24 @@ const Navbar = ({ onSearchClick }: NavbarProps): JSX.Element => {
   return (
     <header 
       className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none"
-      style={{ paddingTop: `${navPadding}px` }}
+      style={{ 
+        paddingTop: `${navPadding}px`,
+        paddingLeft: '20px', // Always maintain side spacing
+        paddingRight: '20px'
+      }}
     >
       <nav 
         className="pointer-events-auto flex items-center justify-between transition-all duration-500 ease-out"
         style={{
           width: `${navWidth}%`,
-          maxWidth: '1200px',
+          maxWidth: scrollProgress > 0.8 ? '1200px' : 'none', // Changed from 0.7 to 0.8 for extremely late transition
           height: `${navHeight}px`,
-          padding: '0 12px',
+          padding: `0 ${24 - (scrollProgress * 3)}px`, // Reduced from 4 to 3 for extremely gentle padding change
           background: glassBg,
           backdropFilter: `blur(${blurAmount}px) saturate(180%)`,
           WebkitBackdropFilter: `blur(${blurAmount}px) saturate(180%)`,
           border: `1px solid ${borderColor}`,
-          borderRadius: '8px',
+          borderRadius: scrollProgress > 0.8 ? '8px' : '0px', // Changed from 0.7 to 0.8
           boxShadow: isDark
             ? `0 4px 24px rgba(0, 0, 0, ${0.25 + scrollProgress * 0.15}), 
                inset 0 1px 0 rgba(255, 255, 255, 0.02)`
