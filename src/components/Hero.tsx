@@ -5,6 +5,7 @@
 
 import { useContext, useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
+import { FaLinkedinIn } from 'react-icons/fa';
 import { ThemeContext } from '../App';
 import { trackResumeDownload, trackSocialClick } from '../utils/analytics';
 import { getSimpleIconUrl } from '../utils/simpleIcons';
@@ -676,17 +677,13 @@ const Hero = (): JSX.Element => {
                   e.currentTarget.style.filter = 'brightness(1.5)';
                 }}
               >
-                <img
-                  src={getSimpleIconUrl('LinkedIn')}
-                  alt="LinkedIn"
-                  width="24"
-                  height="24"
-                  style={{ width: '24px', height: '24px' }}
-                  loading="lazy"
-                  decoding="async"
-                  onError={(event) => {
-                    event.currentTarget.onerror = null;
-                    event.currentTarget.src = getSimpleIconUrl('simpleicons');
+                <FaLinkedinIn
+                  aria-hidden="true"
+                  size={26}
+                  style={{
+                    width: '26px',
+                    height: '26px',
+                    color: isDark ? '#ffffff' : '#000000'
                   }}
                 />
               </motion.a>
