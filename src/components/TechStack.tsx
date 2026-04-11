@@ -223,7 +223,7 @@ const TechStack = (): JSX.Element => {
                   scrollSnapAlign: 'start',
                   flex: '0 0 clamp(300px, 30vw, 360px)',
                   height: 'clamp(300px, 34vw, 350px)',
-                  borderRadius: '6px',
+                  borderRadius: '0px',
                   border: '1px solid rgba(255,255,255,0.16)',
                   background: '#161616',
                   padding: '30px 28px',
@@ -288,7 +288,7 @@ const TechStack = (): JSX.Element => {
                   style={{
                     width: '68px',
                     height: '68px',
-                    borderRadius: '4px',
+                    borderRadius: '0px',
                     border: '1px solid rgba(255,255,255,0.16)',
                     background: '#101010',
                     display: 'grid',
@@ -378,7 +378,7 @@ const TechStack = (): JSX.Element => {
               flex-basis: 320px !important;
               height: 320px !important;
               padding: 26px 24px !important;
-              border-radius: 6px !important;
+              border-radius: 0 !important;
             }
           }
 
@@ -419,7 +419,7 @@ const TechStack = (): JSX.Element => {
             .how-think-carousel-card {
               flex-basis: 280px !important;
               height: 300px !important;
-              border-radius: 6px !important;
+              border-radius: 0 !important;
               padding: 24px 22px !important;
             }
           }
