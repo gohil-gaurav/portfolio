@@ -223,12 +223,12 @@ const GitHubActivity = (): JSX.Element => {
   return (
     <section 
       id="github-activity"
+      className="site-section"
       style={{ 
-        background: 'var(--color-bg)',
-        padding: '60px 20px'
+        background: 'var(--color-bg)'
       }}
     >
-      <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div className="container">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -256,9 +256,9 @@ const GitHubActivity = (): JSX.Element => {
               [GITHUB ACTIVITY]
             </p>
             <h2 
+              className="site-section-title"
               style={{ 
                 fontFamily: monoFont,
-                fontSize: 'clamp(24px, 5vw, 32px)',
                 fontWeight: 700,
                 color: 'var(--color-text)',
                 marginBottom: '12px'

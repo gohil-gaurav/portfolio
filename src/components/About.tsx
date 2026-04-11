@@ -54,7 +54,7 @@ const About = (): JSX.Element => {
   return (
     <section 
       id="about" 
-      className="py-20 md:py-24 lg:py-28"
+      className="site-section"
       style={{ 
         background: 'var(--color-bg)',
         position: 'relative',
@@ -63,12 +63,11 @@ const About = (): JSX.Element => {
     >
       <div className="container">
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-12 md:gap-16 lg:gap-20 items-start justify-items-center"
+          className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-12 md:gap-16 lg:gap-20 items-start justify-items-start"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          style={{ maxWidth: '1000px', margin: '0 auto' }}
         >
           {/* Left - Avatar */}
           <motion.div variants={itemVariants} className="flex justify-center md:justify-start" style={{ paddingTop: '24px' }}>
@@ -124,7 +123,7 @@ const About = (): JSX.Element => {
             {/* Main headline */}
             <motion.h2 
               variants={itemVariants}
-              className="text-2xl md:text-3xl"
+              className="site-section-title"
               style={{
                 fontFamily: monoFont,
                 fontWeight: 600,

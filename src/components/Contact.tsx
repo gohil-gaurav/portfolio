@@ -29,39 +29,37 @@ const Contact = (): JSX.Element => {
   return (
     <section
       id="contact"
-      className="py-32 md:py-40 lg:py-48 px-4"
+      className="site-section"
       style={{
         background: 'var(--color-bg)',
         position: 'relative',
         zIndex: 1,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
         minHeight: '60vh'
       }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="max-w-2xl w-full text-center"
-        style={{
-          background: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
-          border: `1px solid ${isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.08)'}`,
-          borderRadius: '12px',
-          padding: '48px 60px',
-          transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
-          ...(isHovered ? {
-            borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.12)',
-            boxShadow: isDark
-              ? '0 0 40px rgba(255,255,255,0.02)'
-              : '0 0 40px rgba(0,0,0,0.03)',
-          } : {}),
-        }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+      <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="w-full text-center"
+          style={{
+            background: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
+            border: `1px solid ${isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.08)'}`,
+            borderRadius: '0px',
+            padding: '48px 60px',
+            transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
+            ...(isHovered ? {
+              borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.12)',
+              boxShadow: isDark
+                ? '0 0 40px rgba(255,255,255,0.02)'
+                : '0 0 40px rgba(0,0,0,0.03)',
+            } : {}),
+          }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
         {/* Heading */}
         <h2
           style={{
@@ -147,7 +145,8 @@ const Contact = (): JSX.Element => {
 
           Book a Free Call
         </motion.button>
-      </motion.div>
+        </motion.div>
+      </div>
 
       {/* Cal.com Modal */}
       {isModalOpen && createPortal(

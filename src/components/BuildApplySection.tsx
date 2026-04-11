@@ -153,23 +153,14 @@ const BuildApplySection = (): JSX.Element => {
   return (
     <section
       id="how-i-build-apply"
+      className="site-section"
       style={{
         background: '#0d0d0d',
-        paddingTop: '92px',
-        paddingBottom: '96px',
         borderTop: '1px solid rgba(255,255,255,0.06)',
         borderBottom: '1px solid rgba(255,255,255,0.06)'
       }}
     >
-      <div
-        className="container"
-        style={{
-          maxWidth: '1320px',
-          margin: '0 auto',
-          paddingLeft: '64px',
-          paddingRight: '64px'
-        }}
-      >
+      <div className="container">
         <motion.div
           variants={headerVariants}
           initial="hidden"
@@ -180,9 +171,9 @@ const BuildApplySection = (): JSX.Element => {
         >
           <div>
             <h2
+              className="site-section-title"
               style={{
                 fontFamily: monoFont,
-                fontSize: '42px',
                 fontWeight: 700,
                 color: 'rgba(255,255,255,0.98)',
                 marginBottom: '10px',
@@ -531,11 +522,6 @@ const BuildApplySection = (): JSX.Element => {
           }
 
           @media (max-width: 1140px) {
-            section#how-i-build-apply .container {
-              padding-left: 36px !important;
-              padding-right: 36px !important;
-            }
-
             .build-apply-workflow-track {
               gap: 20px !important;
             }
@@ -555,11 +541,6 @@ const BuildApplySection = (): JSX.Element => {
             section#how-i-build-apply {
               padding-top: 84px !important;
               padding-bottom: 84px !important;
-            }
-
-            section#how-i-build-apply .container {
-              padding-left: 20px !important;
-              padding-right: 20px !important;
             }
 
             .build-apply-header {
@@ -592,10 +573,6 @@ const BuildApplySection = (): JSX.Element => {
           }
 
           @media (max-width: 560px) {
-            .build-apply-header h2 {
-              font-size: 34px !important;
-            }
-
             .build-apply-header p {
               font-size: 13px !important;
             }

@@ -63,10 +63,9 @@ const Projects = (): JSX.Element => {
   return (
     <section 
       id="projects" 
+      className="site-section"
       style={{ 
-        background: 'var(--color-bg)',
-        paddingTop: '60px',
-        paddingBottom: '120px'
+        background: 'var(--color-bg)'
       }}
     >
       <div className="container">
@@ -91,7 +90,7 @@ const Projects = (): JSX.Element => {
             [PROJECTS]
           </p>
           <h2 
-            className="text-2xl md:text-3xl"
+            className="site-section-title"
             style={{ 
               fontFamily: monoFont,
               fontWeight: 600,
@@ -183,7 +182,7 @@ const Projects = (): JSX.Element => {
         {/* Projects Grid - Responsive */}
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-2"
-          style={{ gap: '32px', marginBottom: '60px', maxWidth: '1000px', margin: '0 auto 60px' }}
+          style={{ gap: '32px', marginBottom: '60px' }}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
