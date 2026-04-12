@@ -75,7 +75,7 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        minHeight: '500px',
+        minHeight: '670px',
         boxShadow: isDark 
           ? '0 4px 20px rgba(0,0,0,0.3)' 
           : '0 4px 20px rgba(0,0,0,0.06)',
@@ -85,7 +85,7 @@ const ProjectCard = ({ project, index, isDark, monoFont }: ProjectCardProps): JS
       {/* Project Image / Preview Area */}
       <div 
         style={{
-          height: '320px',
+          height: '340px',
           position: 'relative',
           overflow: 'hidden'
         }}

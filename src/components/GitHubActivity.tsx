@@ -266,16 +266,6 @@ const GitHubActivity = (): JSX.Element => {
             >
               GitHub Activity
             </h2>
-            <p 
-              style={{ 
-                fontFamily: monoFont,
-                fontSize: 'clamp(13px, 3vw, 15px)',
-                color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
-                maxWidth: '600px'
-              }}
-            >
-              My coding consistency and open source activity
-            </p>
           </motion.div>
 
           {/* GitHub Contribution Calendar */}

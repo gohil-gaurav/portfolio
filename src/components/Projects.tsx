@@ -101,16 +101,6 @@ const Projects = (): JSX.Element => {
           >
             My Work
           </h2>
-          <p 
-            style={{ 
-              fontSize: '15px',
-              color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
-              maxWidth: '480px',
-              lineHeight: 1.6
-            }}
-          >
-            Projects where I turn data into insights and ideas into real applications.
-          </p>
         </motion.div>
 
         {/* Filter Tabs */}

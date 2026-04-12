@@ -11,6 +11,7 @@ import blogNestImg from '../assets/images/project/blognest.png';
 import kushiImg from '../assets/images/project/kushi.png';
 import bankManagementImg from '../assets/images/project/bankmanagment.png';
 import movieRecommendationImg from '../assets/images/project/MovieRecommendation.png';
+import customerChurnIntelligenceImg from '../assets/images/project/customerchurnintelligence.png';
 
 export type ProjectStatus = 'coming-soon' | 'building' | 'live';
 
@@ -29,16 +30,15 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 1,
-    filename: 'dayflow-hr.tsx',
-    title: 'DayFlow - HR Management System',
-    description: 'Modern HR system with employee management, attendance tracking, leave management, and payroll processing.',
-    techStack: ['Next.js', 'PostgreSQL', 'Prisma', 'NextAuth', 'Tailwind', 'Radix UI'],
-    githubUrl: 'https://github.com/gohil-gaurav/hr_management_odoo',
-    liveUrl: 'https://hr-management-odoo-rose.vercel.app/',
-    status: 'live',
-    image: hrManagementImg,
-    tags: ['Hackathon']
+    id: 8,
+    filename: 'customer-churn-intelligence.py',
+    title: 'Customer Churn Intelligence',
+    description: 'AI/ML project to analyze customer behavior and predict churn risk with actionable insights.',
+    techStack: ['Python', 'Next.js', 'FastAPI', 'Jupyter Notebook', 'Scikit-Learn', 'Pandas', 'NumPy'],
+    githubUrl: 'https://github.com/gohil-gaurav/customer-churn-intelligence',
+    status: 'building',
+    image: customerChurnIntelligenceImg,
+    tags: ['ML']
   },
   {
     id: 2,
@@ -51,6 +51,18 @@ export const projects: Project[] = [
     status: 'live',
     image: movieRecommendationImg,
     tags: ['ML']
+  },
+  {
+    id: 1,
+    filename: 'dayflow-hr.tsx',
+    title: 'DayFlow - HR Management System',
+    description: 'Modern HR system with employee management, attendance tracking, leave management, and payroll processing.',
+    techStack: ['Next.js', 'PostgreSQL', 'Prisma', 'NextAuth', 'Tailwind', 'Radix UI'],
+    githubUrl: 'https://github.com/gohil-gaurav/hr_management_odoo',
+    liveUrl: 'https://hr-management-odoo-rose.vercel.app/',
+    status: 'live',
+    image: hrManagementImg,
+    tags: ['Hackathon']
   },
 
   {
